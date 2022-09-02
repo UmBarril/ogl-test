@@ -49,12 +49,15 @@ void draw(Renderer& renderer, Shader& shader) {
 void keyPressedEvent(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	switch (key) {
 	case GLFW_KEY_W:
-		if(action == GLFW_PRESS) { /* TODO: do something here */ }
+		if(action == GLFW_PRESS) {
+			/* TODO: do something here */
+			std::cout << "it worked!" << '\n';
+		}
 		break;
 	}
 }
 
-GLFWwindow* initializeContext(const int x_windowsize, const int y_windowsize, const char* windowname)
+GLFWwindow* initializeContext(const int window_width, const int window_height, const char* windowname)
 {
 	// initialize glfw
 	if (!glfwInit()) {
@@ -67,11 +70,22 @@ GLFWwindow* initializeContext(const int x_windowsize, const int y_windowsize, co
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(x_windowsize, y_windowsize, windowname, nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(window_width, window_height, windowname, nullptr, nullptr);
 	glfwSetKeyCallback(window, keyPressedEvent); // make glfw send key events to my new function
-	glfwMakeContextCurrent(window);
 
-	glViewport(0.0f, 0.0f, y_windowsize, x_windowsize);
+	// specifies the part of the window to which OpenGL will draw (in pixels), convert from normalised to pixels
+	glfwMakeContextCurrent(window);
+	glViewport( 0.0f, 0.0f, window_width, window_height ); 
+	// projection matrix defines the properties of the camera that views the objects in the world coordinate frame. Here you typically set the zoom factor, aspect ratio and the near and far clipping planes
+    glMatrixMode( GL_PROJECTION ); 
+	// replace the current matrix with the identity matrix and starts us a fresh because matrix transforms such as glOrpho and glRotate cumulate, basically puts us at (0, 0, 0)
+    glLoadIdentity( ); 
+	// essentially set coordinate system
+    glOrtho( 0, window_width, 0, window_height, 0, 1 ); 
+	// (default matrix mode) modelview matrix defines how your objects are transformed (meaning translation, rotation and scaling) in your world
+    glMatrixMode( GL_MODELVIEW ); 
+	// same as above comment
+    glLoadIdentity( ); 
 
 	// initialize glew only after OpenGl context has become current
 	//glewExperimental = GL_TRUE;
