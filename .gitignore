@@ -45,3 +45,6 @@
 *.app
 
 !*/dependencies/
+!*/dependencies/*
+!*/dependencies/*/*
+!*/dependencies/*/*/*
