@@ -14,7 +14,7 @@ unsigned int VertexBufferElement::GetSizeOfType(GLenum type) {
 
 template <typename T>
 void VertexBufferLayout::Push(unsigned int count) {
-	static_assert(false);
+	// if this function is called something went wrong
 }
 
 template<>

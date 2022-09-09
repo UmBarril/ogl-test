@@ -15,6 +15,10 @@
 
 // most of this code was made following the "The Cherno" OpenGl Series
 // link to that is here: https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2
+// TODO: look at this later!!! ----->>>>> https://www.youtube.com/watch?v=ED-WUk440qc and this 
+// https://learnopengl.com/Getting-started/Transformations and 
+// git submodule
+// TODO: learn how to use dependabot
 
 std::array<vertex, 4> bufferData{ {
 	// positions depend on resoltion beacause they are normalized
