@@ -43,3 +43,8 @@
 *.exe
 *.out
 *.app
+
+!*/dependencies/
+!*/dependencies/*
+!*/dependencies/*/*
+!*/dependencies/*/*/*
